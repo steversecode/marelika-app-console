@@ -24,7 +24,7 @@ class ToolController extends Controller
         ]);
 
         $app = ApiApp::findOrFail($validated['app_id']);
-        $url = rtrim($app->store_url ?: url('/'), '/') . '/' . ltrim($validated['endpoint'], '/');
+        $url = url('/' . ltrim($validated['endpoint'], '/'));
 
         $start = microtime(true);
         $responsePayload = null;

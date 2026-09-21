@@ -218,8 +218,25 @@ class OdooGatewayController extends Controller
     public function markSynced(Request $request, $id): JsonResponse
     {
         $start = microtime(true);
-        $apiKey = $request->header('X-BIEMI-API-KEY') ?? $request->header('X-API-KEY') ?? $request->bearerToken() ?? $request->input('api_key');
-        $app = ApiApp::where('api_key', $apiKey)->orWhere('test_api_key', $apiKey)->first();
+        $apiKey = $request->header('X-BIEMI-API-KEY') 
+            ?? $request->header('X-API-KEY') 
+            ?? $request->header('X-MARELIKA-API-KEY') 
+            ?? $request->bearerToken() 
+            ?? $request->input('api_key');
+
+        $partnerId = $request->header('X-PARTNER-ID') ?? $request->input('partner_id');
+
+        $app = null;
+        if (!empty($apiKey)) {
+            $app = ApiApp::where('api_key', $apiKey)
+                ->orWhere('test_api_key', $apiKey)
+                ->first();
+        }
+        if (!$app && !empty($partnerId)) {
+            $app = ApiApp::where('partner_id', $partnerId)
+                ->orWhere('test_partner_id', $partnerId)
+                ->first();
+        }
 
         if (!$app) {
             return response()->json(['success' => false, 'message' => 'Unauthorized'], 401);
@@ -255,8 +272,25 @@ class OdooGatewayController extends Controller
     public function updateTracking(Request $request, $id): JsonResponse
     {
         $start = microtime(true);
-        $apiKey = $request->header('X-BIEMI-API-KEY') ?? $request->header('X-API-KEY') ?? $request->bearerToken() ?? $request->input('api_key');
-        $app = ApiApp::where('api_key', $apiKey)->orWhere('test_api_key', $apiKey)->first();
+        $apiKey = $request->header('X-BIEMI-API-KEY') 
+            ?? $request->header('X-API-KEY') 
+            ?? $request->header('X-MARELIKA-API-KEY') 
+            ?? $request->bearerToken() 
+            ?? $request->input('api_key');
+
+        $partnerId = $request->header('X-PARTNER-ID') ?? $request->input('partner_id');
+
+        $app = null;
+        if (!empty($apiKey)) {
+            $app = ApiApp::where('api_key', $apiKey)
+                ->orWhere('test_api_key', $apiKey)
+                ->first();
+        }
+        if (!$app && !empty($partnerId)) {
+            $app = ApiApp::where('partner_id', $partnerId)
+                ->orWhere('test_partner_id', $partnerId)
+                ->first();
+        }
 
         if (!$app) {
             return response()->json(['success' => false, 'message' => 'Unauthorized'], 401);

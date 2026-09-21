@@ -3,7 +3,7 @@
 @section('title', 'Create App - Marelika Open Platform Console')
 
 @section('content')
-<div class="max-w-3xl space-y-6">
+<div class="w-full space-y-6">
 
     <!-- Breadcrumb -->
     <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">

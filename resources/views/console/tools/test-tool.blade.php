@@ -3,7 +3,7 @@
 @section('title', 'API Test Tool - Marelika Open Platform Console')
 
 @section('content')
-<div class="max-w-4xl space-y-6">
+<div class="w-full space-y-6">
 
     <div class="bg-white dark:bg-[#102038] rounded-2xl border border-slate-200/80 dark:border-slate-800 p-6 shadow-2xs">
         <h1 class="text-xl font-bold text-[#2258a5] dark:text-white">API Test Tool</h1>

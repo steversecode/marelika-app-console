@@ -3,7 +3,7 @@
 @section('title', 'Edit App - ' . $app->name)
 
 @section('content')
-<div class="max-w-4xl space-y-6">
+<div class="w-full space-y-6">
 
     <div class="flex items-center gap-2 text-xs text-slate-500">
         <a href="{{ route('console.apps.index') }}" class="hover:text-[#2258a5] dark:hover:text-white">App Management</a>

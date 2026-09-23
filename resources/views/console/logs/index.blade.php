@@ -5,14 +5,14 @@
 @section('content')
 <div class="space-y-6">
 
-    <div class="bg-white dark:bg-[#102038] rounded-2xl border border-slate-200/80 dark:border-slate-800 p-6 shadow-2xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div class="bg-white dark:bg-[#102038] rounded-2xl border border-slate-200/80 dark:border-slate-800 p-4 sm:p-6 shadow-2xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
             <h1 class="text-xl font-bold text-[#2258a5] dark:text-white">API Access Logs</h1>
             <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Real-time audit log of requests incoming from Odoo ERP and external sync callers.</p>
         </div>
 
         <div class="flex items-center gap-3">
-            <a href="{{ route('console.logs.statistics') }}" class="inline-flex items-center gap-1.5 px-3.5 py-2 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+            <a href="{{ route('console.logs.statistics') }}" class="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-3.5 py-2 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
                 <span class="material-symbols-outlined text-[16px] text-[#f58220]">bar_chart</span>
                 <span>View Statistics</span>
             </a>
@@ -20,52 +20,54 @@
     </div>
 
     <!-- Stats summary -->
-    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <div class="bg-white dark:bg-[#102038] p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs">
-            <div class="text-slate-400 dark:text-slate-500 text-[11px] font-bold uppercase tracking-wider">Total Calls</div>
-            <div class="text-2xl font-bold text-[#2258a5] dark:text-white mt-1">{{ number_format($stats['total_calls']) }}</div>
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+        <div class="bg-white dark:bg-[#102038] p-4 sm:p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs">
+            <div class="text-slate-400 dark:text-slate-500 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider truncate">Total Calls</div>
+            <div class="text-xl sm:text-2xl font-bold text-[#2258a5] dark:text-white mt-1">{{ number_format($stats['total_calls']) }}</div>
         </div>
-        <div class="bg-white dark:bg-[#102038] p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs">
-            <div class="text-emerald-600 text-[11px] font-bold uppercase tracking-wider">Success (2xx)</div>
-            <div class="text-2xl font-bold text-emerald-700 dark:text-emerald-400 mt-1">{{ number_format($stats['success_calls']) }}</div>
+        <div class="bg-white dark:bg-[#102038] p-4 sm:p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs">
+            <div class="text-emerald-600 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider truncate">Success (2xx)</div>
+            <div class="text-xl sm:text-2xl font-bold text-emerald-700 dark:text-emerald-400 mt-1">{{ number_format($stats['success_calls']) }}</div>
         </div>
-        <div class="bg-white dark:bg-[#102038] p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs">
-            <div class="text-rose-600 text-[11px] font-bold uppercase tracking-wider">Failed Calls</div>
-            <div class="text-2xl font-bold text-rose-700 dark:text-rose-400 mt-1">{{ number_format($stats['failed_calls']) }}</div>
+        <div class="bg-white dark:bg-[#102038] p-4 sm:p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs">
+            <div class="text-rose-600 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider truncate">Failed Calls</div>
+            <div class="text-xl sm:text-2xl font-bold text-rose-700 dark:text-rose-400 mt-1">{{ number_format($stats['failed_calls']) }}</div>
         </div>
-        <div class="bg-white dark:bg-[#102038] p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs">
-            <div class="text-slate-400 dark:text-slate-500 text-[11px] font-bold uppercase tracking-wider">Avg Latency</div>
-            <div class="text-2xl font-bold text-slate-800 dark:text-slate-200 mt-1">{{ $stats['avg_response_time'] }} ms</div>
+        <div class="bg-white dark:bg-[#102038] p-4 sm:p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs">
+            <div class="text-slate-400 dark:text-slate-500 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider truncate">Avg Latency</div>
+            <div class="text-xl sm:text-2xl font-bold text-slate-800 dark:text-slate-200 mt-1">{{ $stats['avg_response_time'] }} ms</div>
         </div>
     </div>
 
     <!-- Filter Form -->
     <div class="bg-white dark:bg-[#102038] rounded-2xl border border-slate-200/80 dark:border-slate-800 p-4 shadow-2xs">
-        <form method="GET" action="{{ route('console.logs.index') }}" class="flex flex-wrap items-center gap-3 text-xs">
-            <div>
-                <select name="app_id" class="px-3.5 py-2 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-[#2258a5] text-xs bg-slate-50/50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-medium">
+        <form method="GET" action="{{ route('console.logs.index') }}" class="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-2.5 sm:gap-3 text-xs">
+            <div class="w-full sm:w-auto">
+                <select name="app_id" class="w-full sm:w-auto px-3.5 py-2 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-[#2258a5] text-xs bg-slate-50/50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-medium">
                     <option value="" class="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100">All Applications</option>
                     @foreach($apps as $a)
                         <option value="{{ $a->id }}" {{ request('app_id') == $a->id ? 'selected' : '' }} class="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100">{{ $a->name }} ({{ $a->partner_id }})</option>
                     @endforeach
                 </select>
             </div>
-            <div>
-                <select name="status" class="px-3.5 py-2 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-[#2258a5] text-xs bg-slate-50/50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-medium">
+            <div class="w-full sm:w-auto">
+                <select name="status" class="w-full sm:w-auto px-3.5 py-2 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-[#2258a5] text-xs bg-slate-50/50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-medium">
                     <option value="" class="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100">All Statuses</option>
                     <option value="success" {{ request('status') === 'success' ? 'selected' : '' }} class="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100">Success (200 OK)</option>
                     <option value="failed" {{ request('status') === 'failed' ? 'selected' : '' }} class="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100">Failed / Error</option>
                 </select>
             </div>
-            <div class="flex-1 min-w-[200px]">
+            <div class="w-full sm:flex-1 sm:min-w-[200px]">
                 <input type="text" name="endpoint" value="{{ request('endpoint') }}" placeholder="Filter by endpoint..." class="w-full px-3.5 py-2 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-[#2258a5] text-xs font-mono bg-slate-50/50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500">
             </div>
-            <button type="submit" class="px-4 py-2 bg-[#2258a5] hover:bg-[#1b4787] text-white font-semibold rounded-xl transition-colors">
-                Filter
-            </button>
-            @if(request()->hasAny(['app_id', 'status', 'endpoint']))
-                <a href="{{ route('console.logs.index') }}" class="px-3 py-2 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white">Clear</a>
-            @endif
+            <div class="flex items-center gap-2">
+                <button type="submit" class="flex-1 sm:flex-none px-4 py-2 bg-[#2258a5] hover:bg-[#1b4787] text-white font-semibold rounded-xl transition-colors">
+                    Filter
+                </button>
+                @if(request()->hasAny(['app_id', 'status', 'endpoint']))
+                    <a href="{{ route('console.logs.index') }}" class="px-3 py-2 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white text-center">Clear</a>
+                @endif
+            </div>
         </form>
     </div>
 

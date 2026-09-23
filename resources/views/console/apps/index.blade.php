@@ -6,14 +6,14 @@
 <div class="space-y-6">
 
     <!-- Top Banner -->
-    <div class="bg-white dark:bg-[#102038] rounded-2xl border border-slate-200/80 dark:border-slate-800 p-6 shadow-2xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div class="bg-white dark:bg-[#102038] rounded-2xl border border-slate-200/80 dark:border-slate-800 p-4 sm:p-6 shadow-2xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
             <h1 class="text-xl font-bold text-[#2258a5] dark:text-white">App Management</h1>
             <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Daftar konektor aplikasi toko (Biemi, Clabycla, Manee) untuk integrasi dengan Odoo 13 ERP.</p>
         </div>
 
         <div class="flex items-center gap-3">
-            <a href="{{ route('console.apps.create') }}" class="inline-flex items-center gap-2 px-4 py-2.5 bg-[#f58220] hover:bg-[#dc6e10] text-white text-xs font-bold rounded-xl shadow-xs transition-all">
+            <a href="{{ route('console.apps.create') }}" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-[#f58220] hover:bg-[#dc6e10] text-white text-xs font-bold rounded-xl shadow-xs transition-all">
                 <span class="material-symbols-outlined text-[16px]">add</span>
                 <span>+ Add New APP</span>
             </a>
@@ -21,8 +21,8 @@
     </div>
 
     <!-- Stat Highlights -->
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div class="bg-white dark:bg-[#102038] p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+        <div class="bg-white dark:bg-[#102038] p-4 sm:p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs">
             <div class="flex items-center justify-between">
                 <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Total Apps</div>
                 <span class="material-symbols-outlined text-[#2258a5] text-[20px]">store</span>
@@ -30,7 +30,7 @@
             <div class="text-2xl font-bold text-[#2258a5] dark:text-white mt-2">{{ $stats['total_apps'] }}</div>
         </div>
 
-        <div class="bg-white dark:bg-[#102038] p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs">
+        <div class="bg-white dark:bg-[#102038] p-4 sm:p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs">
             <div class="flex items-center justify-between">
                 <div class="text-[11px] font-bold uppercase tracking-wider text-emerald-600">Active / Online</div>
                 <span class="material-symbols-outlined text-emerald-500 text-[20px]">check_circle</span>
@@ -38,7 +38,7 @@
             <div class="text-2xl font-bold text-emerald-700 dark:text-emerald-400 mt-2">{{ $stats['online_apps'] }}</div>
         </div>
 
-        <div class="bg-white dark:bg-[#102038] p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs">
+        <div class="bg-white dark:bg-[#102038] p-4 sm:p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs">
             <div class="flex items-center justify-between">
                 <div class="text-[11px] font-bold uppercase tracking-wider text-[#f58220]">Total API Traffic</div>
                 <span class="material-symbols-outlined text-[#f58220] text-[20px]">sync_alt</span>
@@ -48,7 +48,7 @@
     </div>
 
     <!-- Card Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
         @forelse($apps as $app)
             <div class="bg-white dark:bg-[#102038] rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs hover:shadow-md hover:border-[#2258a5]/40 transition-all flex flex-col justify-between overflow-hidden group">
                 

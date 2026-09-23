@@ -14,12 +14,12 @@
 
     <!-- Card Form -->
     <div class="bg-white dark:bg-[#102038] rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs overflow-hidden">
-        <div class="p-6 border-b border-slate-100 dark:border-slate-800">
+        <div class="p-4 sm:p-6 border-b border-slate-100 dark:border-slate-800">
             <h1 class="text-lg font-bold text-[#2258a5] dark:text-white">Create New Application</h1>
             <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Register a new store application (Biemi, Clabycla, Manee, etc) to generate API Partner ID and secure credentials for Odoo synchronization.</p>
         </div>
 
-        <form method="POST" action="{{ route('console.apps.store') }}" class="p-6 space-y-5 text-xs">
+        <form method="POST" action="{{ route('console.apps.store') }}" class="p-4 sm:p-6 space-y-4 sm:space-y-5 text-xs">
             @csrf
 
             <!-- App Category -->
@@ -64,11 +64,11 @@
             </div>
 
             <!-- Actions -->
-            <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-end gap-3">
-                <a href="{{ route('console.apps.index') }}" class="px-4 py-2.5 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 font-semibold rounded-xl transition-colors">
+            <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2.5 sm:gap-3">
+                <a href="{{ route('console.apps.index') }}" class="w-full sm:w-auto text-center px-4 py-2.5 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 font-semibold rounded-xl transition-colors">
                     Cancel
                 </a>
-                <button type="submit" class="px-6 py-2.5 bg-[#f58220] hover:bg-[#dc6e10] text-white font-bold rounded-xl shadow-xs transition-all flex items-center gap-1.5">
+                <button type="submit" class="w-full sm:w-auto px-6 py-2.5 bg-[#f58220] hover:bg-[#dc6e10] text-white font-bold rounded-xl shadow-xs transition-all flex items-center justify-center gap-1.5">
                     <span class="material-symbols-outlined text-[16px]">key</span>
                     <span>Submit &amp; Generate Key</span>
                 </button>

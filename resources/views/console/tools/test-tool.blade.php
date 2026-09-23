@@ -5,12 +5,12 @@
 @section('content')
 <div class="w-full space-y-6">
 
-    <div class="bg-white dark:bg-[#102038] rounded-2xl border border-slate-200/80 dark:border-slate-800 p-6 shadow-2xs">
+    <div class="bg-white dark:bg-[#102038] rounded-2xl border border-slate-200/80 dark:border-slate-800 p-4 sm:p-6 shadow-2xs">
         <h1 class="text-xl font-bold text-[#2258a5] dark:text-white">API Test Tool</h1>
         <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Simulate and test Odoo 13 request calls to store connectors in real-time.</p>
     </div>
 
-    <div class="bg-white dark:bg-[#102038] rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs p-6 space-y-4 text-xs" x-data="{ loading: false, result: null }">
+    <div class="bg-white dark:bg-[#102038] rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs p-4 sm:p-6 space-y-4 text-xs">
         
         <div>
             <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1.5">Select Target Application</label>
@@ -36,7 +36,7 @@
         </div>
 
         <div class="pt-2">
-            <button type="button" id="btnRunTest" class="px-6 py-2.5 bg-[#f58220] hover:bg-[#dc6e10] text-white font-bold text-xs rounded-xl shadow-xs transition-all flex items-center gap-1.5">
+            <button type="button" id="btnRunTest" class="w-full sm:w-auto px-6 py-2.5 bg-[#f58220] hover:bg-[#dc6e10] text-white font-bold text-xs rounded-xl shadow-xs transition-all flex items-center justify-center gap-1.5">
                 <span class="material-symbols-outlined text-[16px]">send</span>
                 <span>Send API Test Request</span>
             </button>
@@ -44,11 +44,11 @@
 
         <!-- Output Result -->
         <div id="resultBox" class="hidden mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 space-y-2">
-            <div class="flex items-center justify-between font-bold text-xs">
+            <div class="flex flex-wrap items-center justify-between gap-2 font-bold text-xs">
                 <span class="text-slate-700 dark:text-slate-300">Response Inspector:</span>
                 <span id="responseStatusBadge" class="px-2.5 py-1 rounded-lg text-[11px] font-mono"></span>
             </div>
-            <pre id="responseJson" class="p-4 bg-slate-950 text-emerald-400 border border-slate-800 font-mono text-xs rounded-xl overflow-x-auto max-h-96"></pre>
+            <pre id="responseJson" class="p-4 bg-slate-950 text-emerald-400 border border-slate-800 font-mono text-[11px] sm:text-xs rounded-xl overflow-x-auto max-h-96 max-w-full"></pre>
         </div>
 
     </div>

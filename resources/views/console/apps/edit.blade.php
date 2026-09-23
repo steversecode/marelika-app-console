@@ -14,12 +14,12 @@
     </div>
 
     <div class="bg-white dark:bg-[#102038] rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs overflow-hidden">
-        <div class="p-6 border-b border-slate-100 dark:border-slate-800">
+        <div class="p-4 sm:p-6 border-b border-slate-100 dark:border-slate-800">
             <h1 class="text-lg font-bold text-[#2258a5] dark:text-white">Edit Application Settings</h1>
             <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Konfigurasi nama, status, dan target database untuk {{ $app->name }}.</p>
         </div>
 
-        <form method="POST" action="{{ route('console.apps.update', $app->id) }}" class="p-6 space-y-6 text-xs">
+        <form method="POST" action="{{ route('console.apps.update', $app->id) }}" class="p-4 sm:p-6 space-y-5 sm:space-y-6 text-xs">
             @csrf
             @method('PUT')
 
@@ -56,9 +56,9 @@
             </div>
 
             <!-- Direct Database Connection Box -->
-            <div class="p-5 rounded-2xl bg-[#edf4fc]/60 dark:bg-slate-900/60 border border-[#d3e4f7] dark:border-slate-700 space-y-4">
-                <div class="flex items-center justify-between">
-                    <div class="font-bold text-[#2258a5] dark:text-[#f58220] flex items-center gap-1.5 text-sm">
+            <div class="p-4 sm:p-5 rounded-2xl bg-[#edf4fc]/60 dark:bg-slate-900/60 border border-[#d3e4f7] dark:border-slate-700 space-y-4">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                    <div class="font-bold text-[#2258a5] dark:text-[#f58220] flex items-center gap-1.5 text-xs sm:text-sm">
                         <span class="material-symbols-outlined text-[18px]">database</span>
                         <span>Direct Database Connection (Tanpa Sentuh .env Website)</span>
                     </div>
@@ -101,11 +101,11 @@
                 <input type="url" name="store_url" value="{{ old('store_url', $app->store_url) }}" placeholder="https://biemi.id" class="w-full px-3.5 py-2.5 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-[#2258a5] text-xs font-mono bg-slate-50/50 dark:bg-slate-900">
             </div>
 
-            <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-end gap-3">
-                <a href="{{ route('console.apps.show', $app->id) }}" class="px-4 py-2 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 font-bold rounded-xl transition-colors">
+            <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2.5 sm:gap-3">
+                <a href="{{ route('console.apps.show', $app->id) }}" class="w-full sm:w-auto text-center px-4 py-2.5 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 font-bold rounded-xl transition-colors">
                     Batal
                 </a>
-                <button type="submit" class="px-6 py-2.5 bg-[#f58220] hover:bg-[#dc6e10] text-white font-bold rounded-xl shadow-xs transition-colors">
+                <button type="submit" class="w-full sm:w-auto px-6 py-2.5 bg-[#f58220] hover:bg-[#dc6e10] text-white font-bold rounded-xl shadow-xs transition-colors text-center">
                     Simpan Perubahan
                 </button>
             </div>

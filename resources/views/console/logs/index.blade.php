@@ -210,16 +210,16 @@
         </div>
 
         <div class="overflow-x-auto">
-            <table class="w-full text-left text-xs border-collapse">
+            <table class="w-full text-left text-xs border-collapse min-w-[1050px]">
                 <thead>
                     <tr class="bg-slate-50/90 dark:bg-slate-900/70 border-b border-slate-100 dark:border-slate-800 text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider text-[10px]">
-                        <th scope="col" class="py-3 px-4 w-44">Time</th>
-                        <th scope="col" class="py-3 px-4">Client App</th>
-                        <th scope="col" class="py-3 px-4">Method &amp; Endpoint</th>
-                        <th scope="col" class="py-3 px-4 w-28">Status</th>
-                        <th scope="col" class="py-3 px-4 w-28">Latency</th>
-                        <th scope="col" class="py-3 px-4 w-32">Caller IP</th>
-                        <th scope="col" class="py-3 px-4 w-24 text-center">Inspect</th>
+                        <th scope="col" class="py-3.5 px-4 w-40 whitespace-nowrap">Time</th>
+                        <th scope="col" class="py-3.5 px-4 w-60 min-w-[200px] whitespace-nowrap">Client App</th>
+                        <th scope="col" class="py-3.5 px-4 min-w-[260px]">Method &amp; Endpoint</th>
+                        <th scope="col" class="py-3.5 px-4 w-32 whitespace-nowrap">Status</th>
+                        <th scope="col" class="py-3.5 px-4 w-28 whitespace-nowrap">Latency</th>
+                        <th scope="col" class="py-3.5 px-4 w-52 min-w-[180px] whitespace-nowrap">Caller IP</th>
+                        <th scope="col" class="py-3.5 px-4 w-24 whitespace-nowrap text-right pr-6">Action</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100 dark:divide-slate-800/80 font-normal">
@@ -247,36 +247,36 @@
                         <tr class="hover:bg-blue-50/40 dark:hover:bg-slate-800/60 transition-colors group cursor-pointer" onclick="openLogInspector({{ json_encode($logJson) }})">
                             
                             <!-- Timestamp -->
-                            <td class="py-3 px-4 whitespace-nowrap">
-                                <div class="font-mono text-slate-800 dark:text-slate-200 text-[11px] font-medium">
+                            <td class="py-3.5 px-4 whitespace-nowrap align-middle">
+                                <div class="font-mono text-slate-800 dark:text-slate-200 text-xs font-semibold">
                                     {{ $log->created_at->format('H:i:s') }}
                                 </div>
-                                <div class="text-[10px] text-slate-400 dark:text-slate-500 font-sans">
+                                <div class="text-[10px] text-slate-400 dark:text-slate-500 font-sans mt-0.5">
                                     {{ $log->created_at->format('d M Y') }} &bull; {{ $log->created_at->diffForHumans(null, true) }}
                                 </div>
                             </td>
 
                             <!-- App / Partner ID -->
-                            <td class="py-3 px-4">
+                            <td class="py-3.5 px-4 whitespace-nowrap align-middle">
                                 @if($log->app)
                                     <div class="font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-[#2258a5] dark:bg-sky-400"></span>
-                                        <span>{{ $log->app->name }}</span>
+                                        <span class="w-2 h-2 rounded-full bg-[#2258a5] dark:bg-sky-400 shrink-0"></span>
+                                        <span class="truncate max-w-[210px]" title="{{ $log->app->name }}">{{ $log->app->name }}</span>
                                     </div>
-                                    <div class="flex items-center gap-1.5 mt-0.5">
+                                    <div class="flex items-center gap-1.5 mt-0.5 pl-3.5">
                                         <span class="font-mono text-[10px] text-slate-400 dark:text-slate-500">{{ $log->app->partner_id }}</span>
                                         <button type="button" onclick="event.stopPropagation(); copyToClipboard('{{ $log->app->partner_id }}', this, 'Partner ID')" class="text-slate-400 hover:text-[#2258a5] dark:hover:text-sky-400 p-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity" title="Copy Partner ID" aria-label="Copy Partner ID">
                                             <span class="material-symbols-outlined text-[13px] block">content_copy</span>
                                         </button>
                                     </div>
                                 @else
-                                    <span class="text-slate-400 dark:text-slate-500 italic text-[11px]">Unregistered App</span>
+                                    <span class="text-slate-400 dark:text-slate-500 italic text-xs">Unregistered App</span>
                                 @endif
                             </td>
 
                             <!-- Method & Endpoint -->
-                            <td class="py-3 px-4">
-                                <div class="flex items-center gap-1.5 font-mono text-[11px]">
+                            <td class="py-3.5 px-4 align-middle">
+                                <div class="flex items-center gap-2 font-mono text-xs whitespace-nowrap">
                                     @php
                                         $methodBg = match(strtoupper($log->method)) {
                                             'GET' => 'bg-sky-100 dark:bg-sky-950/70 text-sky-800 dark:text-sky-300 border-sky-200 dark:border-sky-800/80',
@@ -286,18 +286,18 @@
                                             default => 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700'
                                         };
                                     @endphp
-                                    <span class="px-2 py-0.5 rounded-md text-[10px] font-extrabold border {{ $methodBg }}">
+                                    <span class="px-2 py-0.5 rounded-md text-[10px] font-extrabold border shrink-0 {{ $methodBg }}">
                                         {{ $log->method }}
                                     </span>
-                                    <span class="text-slate-800 dark:text-slate-200 font-semibold truncate max-w-xs sm:max-w-sm md:max-w-md block" title="{{ $log->endpoint }}">
+                                    <span class="text-slate-800 dark:text-slate-200 font-semibold truncate max-w-xs md:max-w-sm lg:max-w-md block" title="{{ $log->endpoint }}">
                                         {{ $log->endpoint }}
                                     </span>
-                                    <button type="button" onclick="event.stopPropagation(); copyToClipboard('{{ $log->endpoint }}', this, 'Endpoint')" class="text-slate-400 hover:text-[#2258a5] dark:hover:text-sky-400 p-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity" title="Copy endpoint" aria-label="Copy endpoint">
+                                    <button type="button" onclick="event.stopPropagation(); copyToClipboard('{{ $log->endpoint }}', this, 'Endpoint')" class="text-slate-400 hover:text-[#2258a5] dark:hover:text-sky-400 p-0.5 rounded shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" title="Copy endpoint" aria-label="Copy endpoint">
                                         <span class="material-symbols-outlined text-[13px] block">content_copy</span>
                                     </button>
                                 </div>
                                 @if($log->error_message)
-                                    <div class="flex items-center gap-1 text-rose-600 dark:text-rose-400 text-[10px] font-sans mt-1 bg-rose-50/70 dark:bg-rose-950/40 px-2 py-0.5 rounded-md border border-rose-100 dark:border-rose-900/50 max-w-lg truncate" title="{{ $log->error_message }}">
+                                    <div class="flex items-center gap-1.5 text-rose-600 dark:text-rose-400 text-[10px] font-sans mt-1 bg-rose-50/70 dark:bg-rose-950/40 px-2 py-0.5 rounded-md border border-rose-100 dark:border-rose-900/50 max-w-md truncate" title="{{ $log->error_message }}">
                                         <span class="material-symbols-outlined text-[13px] shrink-0">error</span>
                                         <span class="truncate">{{ $log->error_message }}</span>
                                     </div>
@@ -305,7 +305,7 @@
                             </td>
 
                             <!-- Status Code -->
-                            <td class="py-3 px-4 whitespace-nowrap">
+                            <td class="py-3.5 px-4 whitespace-nowrap align-middle">
                                 @if($log->status === 'success' || ($log->status_code >= 200 && $log->status_code < 300))
                                     <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
                                         <span class="material-symbols-outlined text-[12px]">check</span>
@@ -320,7 +320,7 @@
                             </td>
 
                             <!-- Latency -->
-                            <td class="py-3 px-4 whitespace-nowrap font-mono text-[11px]">
+                            <td class="py-3.5 px-4 whitespace-nowrap font-mono text-xs align-middle">
                                 @if($log->response_time_ms !== null)
                                     <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold {{ $log->response_time_ms < 150 ? 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300' : ($log->response_time_ms < 500 ? 'bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300' : 'bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300') }}">
                                         {{ $log->response_time_ms }} ms
@@ -331,15 +331,15 @@
                             </td>
 
                             <!-- Caller IP -->
-                            <td class="py-3 px-4 whitespace-nowrap font-mono text-slate-500 dark:text-slate-400 text-[11px]">
-                                <span class="flex items-center gap-1">
-                                    <span class="material-symbols-outlined text-[13px] text-slate-400">public</span>
-                                    <span>{{ $log->ip_address ?: '-' }}</span>
+                            <td class="py-3.5 px-4 whitespace-nowrap font-mono text-slate-500 dark:text-slate-400 text-xs align-middle">
+                                <span class="flex items-center gap-1.5" title="{{ $log->ip_address }}">
+                                    <span class="material-symbols-outlined text-[14px] text-slate-400 shrink-0">public</span>
+                                    <span class="select-all">{{ $log->ip_address ?: '-' }}</span>
                                 </span>
                             </td>
 
                             <!-- Action -->
-                            <td class="py-3 px-4 text-center whitespace-nowrap">
+                            <td class="py-3.5 px-4 text-right pr-6 whitespace-nowrap align-middle">
                                 <button type="button" class="px-2.5 py-1 text-[#2258a5] dark:text-sky-400 hover:bg-[#edf4fc] dark:hover:bg-slate-800 font-bold rounded-lg transition-colors inline-flex items-center gap-1 text-[11px] focus-visible:ring-2 focus-visible:ring-[#2258a5]/30 outline-none" title="Inspect Request Payload">
                                     <span class="material-symbols-outlined text-[15px]">search</span>
                                     <span>Inspect</span>
